@@ -1,0 +1,45 @@
+{
+  "name": "changelog-lite",
+  "version": "0.0.0",
+  "description": "A lite changelog generator",
+  "keywords": [
+    "changelog",
+    "generator"
+  ],
+  "license": "MIT",
+  "author": "commenthol <commenthol@gmail.com>",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "types",
+  "files": [
+    "bin",
+    "src",
+    "types"
+  ],
+  "scripts": {
+    "all": "npm-run-all lint coverage types",
+    "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r1",
+    "coverage": "c8 npm t",
+    "lint": "eslint --ext js .",
+    "test": "mocha",
+    "types": "rimraf types; tsc"
+  },
+  "mocha": {
+    "recursive": true
+  },
+  "dependencies": {
+    "debug-level": "3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

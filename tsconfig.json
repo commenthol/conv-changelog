@@ -14,7 +14,7 @@
   },
   "include": [
     "src/*.js"
-  ],
+, "test/escapeCommand.spec.js"  ],
   "exclude": [
     "node_modules",
     "test",

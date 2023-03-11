@@ -2,17 +2,18 @@
 
 ### feat:
 
-- first version (af3220c)
+- first version (#af3220c)
 
 ### fix:
 
-- correct line splitting for git logs (e877c5b)
+- types (#d993fb0)
+- correct line splitting for git logs (#e877c5b)
 
 ### chore:
 
-- setup (a791251)
+- setup (#a791251)
 
 ### other:
 
-- initial commit (0c872bc)
+- initial commit (#0c872bc)
 

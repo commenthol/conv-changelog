@@ -5,7 +5,7 @@ const linesT = ejs.compile(
   `# <%-version%> (<%-date%>)
 
 <%_ lines.forEach(({subject, short}) => { _%>
-- <%-subject%><% if (useHash) { %> (<%-short%>)<% } %>
+- <%-subject%><% if (useHash) { %> (#<%-short%>)<% } %>
 <%_ }) _%>
 
 `
@@ -15,7 +15,7 @@ const linesUrlT = ejs.compile(
   `# [<%-version%>](<%-url%>/<%-lastVersion%>..<%-version%>) (<%-date%>)
 
 <%_ lines.forEach(({subject, short, hash}) => { _%>
-- <%-subject%><% if (useHash) { %> [<%-short%>](<%-url%>/<%-hash%>)<% } %>
+- <%-subject%><% if (useHash) { %> [#<%-short%>](<%-url%>/<%-hash%>)<% } %>
 <%_ }) _%>
 
 `)
@@ -28,7 +28,7 @@ const groupsT = ejs.compile(
 ### <%-type%>:
 
 <%_ lines.forEach(({subject, short}) => { _%>
-- <%-subject%><% if (useHash) { %> (<%-short%>)<% } %>
+- <%-subject%><% if (useHash) { %> (#<%-short%>)<% } %>
 <%_ }) _%>
 <%_ }) _%>
 
@@ -43,7 +43,7 @@ const groupsUrlT = ejs.compile(
 ### <%-type%>:
 
 <%_ lines.forEach(({short, hash, subject}) => { _%>
-- <%-subject%><% if (useHash) { %> [<%-short%>](<%-url%>/<%-hash%>)<% } %>
+- <%-subject%><% if (useHash) { %> [#<%-short%>](<%-url%>/<%-hash%>)<% } %>
 <%_ }) _%>
 <%_ }) _%>
 

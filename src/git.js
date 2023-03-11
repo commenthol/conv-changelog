@@ -109,10 +109,17 @@ export class Git {
    * @returns {Promise<GitLogItem[]|[]>}
    */
   async getLog (fromTag, toTag = 'HEAD') {
-    const opts = fromTag ? `${fromTag}..${toTag}` : ''
+    const opts = fromTag ? `${fromTagAddPrevious(fromTag)}..${toTag}` : ''
     const cmd = `git log ${opts} --pretty=format:${FORMAT}`
     const stdout = await exec(cmd, this.#options)
     const lines = stdout.toString().split(LINESEP + '\n')
     return Git.parseLines(lines)
   }
+}
+
+const fromTagAddPrevious = (fromTag) => {
+  if (fromTag.indexOf('~') > 0) {
+    return fromTag
+  }
+  return `${fromTag}~1`
 }

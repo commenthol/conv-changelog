@@ -38,7 +38,7 @@ describe('cli', function () {
 
   it('from .. to', function () {
     assert.deepEqual(
-      cli(['-f', 'foo', '-t', 'HEAD']),
+      cli(['--from', 'foo', '--to', 'HEAD']),
       {
         in: 'CHANGELOG.md',
         fromTag: 'foo',

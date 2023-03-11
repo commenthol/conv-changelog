@@ -45,6 +45,7 @@ export function cli (argv = process.argv.slice(2)) {
         const arg = argv.shift()
         if (!arg || startsWithDash(arg)) {
           o.error = `--in ${arg} must be a valid filename`
+          break
         }
         o.in = arg
         break
@@ -79,7 +80,6 @@ export function cli (argv = process.argv.slice(2)) {
         o.revisions = Number(arg)
         break
       }
-      case '-f':
       case '--from': {
         const arg = argv.shift()
         if (!arg || startsWithDash(arg)) {
@@ -88,7 +88,6 @@ export function cli (argv = process.argv.slice(2)) {
         o.fromTag = arg
         break
       }
-      case '-t':
       case '--to': {
         const arg = argv.shift()
         if (!arg || startsWithDash(arg)) {
@@ -107,7 +106,7 @@ export function cli (argv = process.argv.slice(2)) {
         o.filter = new RegExp(arg)
         break
       }
-      case '-th':
+      case '-t':
       case '--theme': {
         const arg = argv.shift()
         if (!arg || startsWithDash(arg)) {

@@ -1,6 +1,9 @@
 import * as path from 'node:path'
 import * as fsp from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
+import debug from 'debug'
+
+const log = debug('conv-changelog:clfile')
 
 /**
  * @typedef {import('node:child_process').SpawnOptionsWithoutStdio} SpawnOptionsWithoutStdio
@@ -51,6 +54,11 @@ export class ChangelogFile {
       throw new Error('load file before any change')
     }
 
+    if (!changes.length) {
+      log('no changes...')
+      return
+    }
+
     const content = this._content?.split(/(#+ .*)/)
 
     if (!content || !lastVersion) {
@@ -71,6 +79,6 @@ export class ChangelogFile {
 
     const lower = content.slice(slicePos)
     // @ts-expect-error
-    this._content = [].concat('# Changelog\n\n', changes, lower).join('')
+    this._content = [].concat(changes, lower).join('')
   }
 }

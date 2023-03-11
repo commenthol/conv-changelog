@@ -90,11 +90,11 @@ export function formatByGroups (items, { lastVersion = '0.0.0', nextVersion = ''
   let version = nextVersion
 
   const pushIt = () => {
-    const groupsArr = sortBy(
+    const groupsArr = sortByOrder(
       Object.keys(groups),
       ['BREAKING CHANGE', 'feat', 'fix', 'docs', 'chore']
-    )
-      .map((type) => groups[type])
+    ).map((type) => groups[type])
+
     const _date = date.toISOString().slice(0, 10)
     const template = url && lastVersion ? groupsUrlT : groupsT
     const str = template({
@@ -132,30 +132,17 @@ export function formatByGroups (items, { lastVersion = '0.0.0', nextVersion = ''
   return out
 }
 
-/**
- * sort strings, numbers, booleans
- * @private
- * @param {any} a
- * @param {any} b
- * @returns {number}
- */
-const sort = (a, b) => typeof a === 'string'
-  ? a.localeCompare(b)
-  : a - b
-
-/**
- * @param {object[]} arrOfObjs
- * @param {string|string[]} keys
- * @returns {object[]} sorted array of objects
- */
-export const sortBy = (arrOfObjs, keys) => {
-  const _keys = typeof keys === 'string' ? [keys] : keys
-  const sorter = (a, b) => {
-    for (const key of _keys) {
-      const r = sort(a[key], b[key])
-      if (r !== 0) return r
+export const sortByOrder = (values, byOrder) => {
+  const arr = []
+  for (const v of byOrder) {
+    if (values.includes(v)) {
+      arr.push(v)
     }
-    return 0
   }
-  return arrOfObjs.sort(sorter)
+  for (const v of values.sort()) {
+    if (!byOrder.includes(v)) {
+      arr.push(v)
+    }
+  }
+  return arr
 }

@@ -8,10 +8,14 @@ const log = debug('conv-changelog:git')
  * @typedef {import('../src/types').GitLogItem} GitLogItem
  */
 
-const SEP = `(${Math.random().toString(36)})`
+const randomSep = () => `(~(${Math.random().toString(36)})~)`
+
+const SEP = randomSep()
+const LINESEP = randomSep()
+
 // @see https://git-scm.com/docs/pretty-formats
 // [short, hash, tags, date, mail, subject]
-const FORMAT = ['%h', '%H', '%d', '%ci', '%ce', '%s', '%b'].join(SEP)
+const FORMAT = ['%h', '%H', '%d', '%ci', '%ce', '%s', '%b', LINESEP].join(SEP)
 
 export class Git {
   #options
@@ -108,7 +112,7 @@ export class Git {
     const opts = fromTag ? `${fromTag}..${toTag}` : ''
     const cmd = `git log ${opts} --pretty=format:${FORMAT}`
     const stdout = await exec(cmd, this.#options)
-    const lines = stdout.toString().split('\n')
+    const lines = stdout.toString().split(LINESEP + '\n')
     return Git.parseLines(lines)
   }
 }

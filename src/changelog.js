@@ -98,7 +98,7 @@ export class Changelog {
       const { type } = item
       if (['feat'].includes(type) && nextType !== 'minor') {
         nextType = 'minor'
-      } else if (['break', 'BREAKING CHANGE'].includes(type) && nextType !== 'major') {
+      } else if (['BREAKING CHANGE'].includes(type) && nextType !== 'major') {
         nextType = 'major'
       }
       if (item.versions?.length) {

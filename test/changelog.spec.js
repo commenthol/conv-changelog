@@ -56,20 +56,6 @@ describe('Changelog', function () {
       assert.equal(next, '1.1.0')
     })
 
-    it('breaking version', function () {
-      const cl = new Changelog()
-      cl._items = [
-        {
-          type: 'break'
-        },
-        {
-          versions: [{ version: '1.0.0' }]
-        }
-      ]
-      const next = cl.nextVersion()
-      assert.equal(next, '2.0.0')
-    })
-
     it('BREAKING CHANGE', function () {
       const cl = new Changelog()
       cl._items = [

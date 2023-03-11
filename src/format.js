@@ -92,7 +92,7 @@ export function formatByGroups (items, { lastVersion = '0.0.0', nextVersion = ''
   const pushIt = () => {
     const groupsArr = sortBy(
       Object.keys(groups),
-      ['BREAKING CHANGE', 'break', 'feat', 'fix', 'docs', 'chore']
+      ['BREAKING CHANGE', 'feat', 'fix', 'docs', 'chore']
     )
       .map((type) => groups[type])
     const _date = date.toISOString().slice(0, 10)

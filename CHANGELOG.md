@@ -1,3 +1,9 @@
+# 0.1.1 (2023-03-12)
+
+### docs:
+
+- package.json description and keywords (#ee0e2aa)
+
 # 0.1.0 (2023-03-12)
 
 ### feat:

@@ -1,18 +1,28 @@
 {
   "name": "conv-changelog",
-  "version": "0.1.0",
-  "description": "A conventional changelog generator",
+  "version": "0.1.1-0",
+  "description": "A conventional commits changelog generator",
   "keywords": [
+    "conventional",
+    "commits",
     "changelog",
     "generator"
   ],
+  "homepage": "https://github.com/commenthol/conv-changelog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commenthol/conv-changelog.git"
+  },
   "license": "MIT",
   "author": "commenthol <commenthol@gmail.com>",
   "type": "module",
   "main": "src/index.js",
   "types": "types",
   "bin": {
-    "conv-changelog": "./bin/conv-changelog.js"
+    "conv-changelog": "bin/conv-changelog.js"
+  },
+  "directories": {
+    "test": "test"
   },
   "files": [
     "bin",

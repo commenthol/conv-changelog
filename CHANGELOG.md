@@ -10,6 +10,10 @@
 - types (#7d15c30)
 - correct line splitting for git logs (#e877c5b)
 
+### docs:
+
+- README.md (#e3a541f)
+
 ### chore:
 
 - setup (#a791251)

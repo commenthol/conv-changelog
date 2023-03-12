@@ -23,7 +23,7 @@ export const help = () => `
     -u|--url <href>
                           Repo url.
     -f|--filter <regex>
-                          filter packages by regular expression.
+                          filter commit subjects by regular expression.
     -d|--dir <dirname>
                           use different dirname instead of current working
                           directory.

@@ -1,4 +1,4 @@
-# 0.1.0 (2023-03-11)
+# 0.1.0 (2023-03-12)
 
 ### feat:
 
@@ -6,7 +6,8 @@
 
 ### fix:
 
-- types (#d993fb0)
+- refactoring file handling (#d7048bb)
+- types (#7d15c30)
 - correct line splitting for git logs (#e877c5b)
 
 ### chore:

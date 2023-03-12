@@ -1,17 +1,19 @@
 import * as path from 'node:path'
 import * as fsp from 'node:fs/promises'
-import { fileURLToPath } from 'node:url'
 import debug from 'debug'
 
 const log = debug('conv-changelog:clfile')
 
 /**
- * @typedef {import('node:child_process').SpawnOptionsWithoutStdio} SpawnOptionsWithoutStdio
+ * @typedef {object} FileHandleOptions
+ * @property {string} cwd Current working directory
+ * @property {string} [in='CHANGELOG.md'] input file
+ * @property {string} [out] output file
  */
 
 export class ChangelogFile {
   /**
-   * @param {SpawnOptionsWithoutStdio & {in?: string, out?: string}} [options]
+   * @param {FileHandleOptions} [options]
    */
   constructor (options) {
     const {
@@ -22,9 +24,7 @@ export class ChangelogFile {
 
     this._content = ''
     this._isLoaded = false
-    this._dirname = cwd instanceof URL
-      ? fileURLToPath(cwd)
-      : String(cwd || '')
+    this._dirname = String(cwd || '')
 
     this._inFilename = path.resolve(this._dirname, inFilename)
     this._outFilename = outFilename && path.resolve(this._dirname, outFilename)

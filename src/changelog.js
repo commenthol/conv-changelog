@@ -1,25 +1,25 @@
 import semver from 'semver'
 import { Git } from './git.js'
 import { formatByGroups, formatLines } from './format.js'
+import debug from 'debug'
+
+const log = debug('conv-changelog:changelog')
 
 /**
  * @typedef {import('../src/types').GitLogItem} GitLogItem
- */
-/**
+ *
  * @typedef {object} GetLogsOptions
  * @property {number} [revisions=1] number of revisions to travel back
  * @property {string} [fromTag] start with tag (disabled lookup by revisions)
  * @property {string} [toTag='HEAD'] end with tag
  * @property {RegExp} [filter=/^Merge pull request|\bchangelog\b/] filter by subject
- */
-/**
+ *
  * @typedef {object} FormatOptions
  * @property {string} [url]
  * @property {'groups'|'lines'|string} [theme='lines']
  * @property {string} [nextVersion]
  * @property {boolean} [useHash=true]
- */
-/**
+ *
  * @typedef {import('node:child_process').SpawnOptionsWithoutStdio} SpawnOptionsWithoutStdio
  */
 
@@ -147,4 +147,23 @@ export class Changelog {
 
     return out
   }
+}
+
+/**
+ * @param {SpawnOptionsWithoutStdio & GetLogsOptions & FormatOptions} options
+ * @param {string} [currVersion]
+ * @returns {Promise<{
+ *  changes: string[]
+ *  lastVersion?: string
+ *  nextVersion: string
+ * }>}
+ */
+export async function changelog (options, currVersion) {
+  const cl = new Changelog(options)
+  await cl.getLogs(options)
+  const nextVersion = cl.nextVersion(currVersion)
+  const lastVersion = cl.lastVersion()
+  log({ nextVersion, lastVersion, options })
+  const changes = cl.format({ nextVersion, ...options })
+  return { changes, lastVersion, nextVersion }
 }

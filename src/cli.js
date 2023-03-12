@@ -4,9 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { changelog } from './index.js'
 import { help } from './help.js'
 import debug from 'debug'
-import { ChangelogFile } from './changelogfile.js'
-import { PckgJson } from './pckgjson.js'
-import { VersionFile } from './versionfile.js'
+import { handleFiles } from './handlefiles.js'
 
 const log = debug('conv-changelog:cli')
 
@@ -172,26 +170,8 @@ export async function main () {
   }
 
   const { changes, lastVersion, nextVersion } = await changelog(options)
-
-  const pckgJson = new PckgJson({ cwd: options.cwd })
-  await pckgJson.read()
-  const versionFile = new VersionFile({ cwd: options.cwd })
-  await versionFile.read()
-
-  // apply changes to package.json if exists
-  if (pckgJson.exists()) {
-    pckgJson.setNextVersion(nextVersion)
-    await pckgJson.write()
-  } else {
-    versionFile.setNextVersion(nextVersion)
-    await versionFile.write()
-  }
-
-  // apply changes to changelog file
-  const file = new ChangelogFile(options)
-  await file.read()
-  file.applyChange({ changes, lastVersion })
-  await file.write()
+  // @ts-expect-error
+  await handleFiles(options, { changes, lastVersion, nextVersion })
 
   if (!options.out) {
     console.log(changes.join(''))

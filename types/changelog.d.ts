@@ -1,22 +1,33 @@
 /// <reference types="node" />
 /**
- * @typedef {import('../src/types').GitLogItem} GitLogItem
+ * @param {SpawnOptionsWithoutStdio & GetLogsOptions & FormatOptions} options
+ * @param {string} [currVersion]
+ * @returns {Promise<{
+ *  changes: string[]
+ *  lastVersion?: string
+ *  nextVersion: string
+ * }>}
  */
+export function changelog(options: SpawnOptionsWithoutStdio & GetLogsOptions & FormatOptions, currVersion?: string | undefined): Promise<{
+    changes: string[];
+    lastVersion?: string | undefined;
+    nextVersion: string;
+}>;
 /**
+ * @typedef {import('../src/types').GitLogItem} GitLogItem
+ *
  * @typedef {object} GetLogsOptions
  * @property {number} [revisions=1] number of revisions to travel back
  * @property {string} [fromTag] start with tag (disabled lookup by revisions)
  * @property {string} [toTag='HEAD'] end with tag
  * @property {RegExp} [filter=/^Merge pull request|\bchangelog\b/] filter by subject
- */
-/**
+ *
  * @typedef {object} FormatOptions
  * @property {string} [url]
  * @property {'groups'|'lines'|string} [theme='lines']
  * @property {string} [nextVersion]
  * @property {boolean} [useHash=true]
- */
-/**
+ *
  * @typedef {import('node:child_process').SpawnOptionsWithoutStdio} SpawnOptionsWithoutStdio
  */
 export class Changelog {

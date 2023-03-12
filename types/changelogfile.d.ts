@@ -1,15 +1,14 @@
-/// <reference types="node" />
 /**
- * @typedef {import('node:child_process').SpawnOptionsWithoutStdio} SpawnOptionsWithoutStdio
+ * @typedef {object} FileHandleOptions
+ * @property {string} cwd Current working directory
+ * @property {string} [in='CHANGELOG.md'] input file
+ * @property {string} [out] output file
  */
 export class ChangelogFile {
     /**
-     * @param {SpawnOptionsWithoutStdio & {in?: string, out?: string}} [options]
+     * @param {FileHandleOptions} [options]
      */
-    constructor(options?: (import("child_process").SpawnOptionsWithoutStdio & {
-        in?: string | undefined;
-        out?: string | undefined;
-    }) | undefined);
+    constructor(options?: FileHandleOptions | undefined);
     _content: string;
     _isLoaded: boolean;
     _dirname: string;
@@ -22,4 +21,17 @@ export class ChangelogFile {
         lastVersion: any;
     }): void;
 }
-export type SpawnOptionsWithoutStdio = import('node:child_process').SpawnOptionsWithoutStdio;
+export type FileHandleOptions = {
+    /**
+     * Current working directory
+     */
+    cwd: string;
+    /**
+     * input file
+     */
+    in?: string | undefined;
+    /**
+     * output file
+     */
+    out?: string | undefined;
+};

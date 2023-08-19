@@ -89,4 +89,4 @@ export type FormatOptions = {
     useHash?: boolean | undefined;
 };
 export type SpawnOptionsWithoutStdio = import('node:child_process').SpawnOptionsWithoutStdio;
-import { Git } from "./git.js";
+import { Git } from './git.js';

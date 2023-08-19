@@ -1,8 +1,12 @@
-# 0.1.1 (2023-03-12)
+# 1.0.0 (2023-08-19)
 
 ### docs:
 
-- package.json description and keywords (#ee0e2aa)
+- package.json description and keywords (#26d7ef4)
+
+### chore:
+
+- bump dependencies (#e32ff6a)
 
 # 0.1.0 (2023-03-12)
 

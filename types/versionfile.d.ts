@@ -11,7 +11,7 @@ export class VersionFile {
     /**
      * @param {string} nextVersion
      */
-    set version(arg: string);
+    set version(nextVersion: string);
     /**
      * @returns {string}
      */
